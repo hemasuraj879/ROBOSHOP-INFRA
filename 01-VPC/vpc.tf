@@ -1,5 +1,5 @@
 module "vpc" {
-  source               = "../../TERRAFORM-VPC"
+  source               = "git::https://github.com/hemasuraj879/ROBOSHOP-INFRA.git"
   vpc_cidr             = var.vpc_cidr
   enable_dns_hostnames = var.enable_dns_hostnames
   enable_dns_support   = var.enable_dns_support

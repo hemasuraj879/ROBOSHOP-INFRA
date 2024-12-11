@@ -1,0 +1,38 @@
+pipeline {
+    
+    agent any
+
+    stages {
+        
+        stage('INIT AND PLAN'){
+
+            steps{
+
+                withAWS(region: 'us-east-1', credentials: 'aws-creds') {
+                 sh """
+                        cd 01-VPC
+                        terraform init -reconfigure
+                        terraform plan -out=tfplan
+                    """
+
+                }
+            }
+        }
+    }
+
+
+
+    post{
+        always{
+            // delete the workspace
+            deleteDir()
+            
+        }
+        success{
+            echo "pipeline was success"
+        }
+        failure{
+            echo "pipeline gets failure"
+        }
+    }
+}
