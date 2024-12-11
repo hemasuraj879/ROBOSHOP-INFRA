@@ -8,7 +8,7 @@ pipeline {
 
             steps{
 
-                withAWS(region: 'us-east-1', credentials: 'aws-creds') {
+                withAWS(region: 'us-east-1', credentials: 'aws-auth') {
                  sh """
                         cd 01-VPC
                         terraform init -reconfigure
